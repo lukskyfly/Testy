@@ -1,6 +1,7 @@
 package elektricity;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ElectricityMeterTest {
@@ -26,7 +27,7 @@ public class ElectricityMeterTest {
         electricityMeter.addKwh(4);
         electricityMeter.addKwh(4);
         electricityMeter.addKwh(4);
-        Assert.assertTrue(electricityMeter.getKwh() == 17);
+        Assert.assertTrue("",electricityMeter.getKwh() == 17);
     }
     @Test
     public void addKwhCounterIncreasIfNew() {
@@ -41,5 +42,11 @@ public class ElectricityMeterTest {
         electricityMeter.addKwh(1);
         Assert.assertTrue(electricityMeter.getKwh() == 2);
     }
-
+    @Ignore("not implemented yet")
+    @Test(expected = ArithmeticException.class)
+    public void getHowMoreExpensiveNormalIs() {
+        ElectricityMeter electricityMeter = new ElectricityMeter();
+        electricityMeter.setCentsForKwh(90);
+        electricityMeter.getHowMoreExpensiveNormalIs();
+    }
 }
