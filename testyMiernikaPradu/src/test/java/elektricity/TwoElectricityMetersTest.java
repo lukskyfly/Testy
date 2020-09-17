@@ -61,7 +61,7 @@ public class TwoElectricityMetersTest {
         Assert.assertTrue(electricityMeter.getKwh() == 2);
     }
 
-    @Ignore("not implemented yet")
+//    @Ignore("not implemented yet")
     @Test(expected = ArithmeticException.class)
     public void getHowMoreExpensiveNormalIs() {
         ElectricityMeter electricityMeter = new ElectricityMeter();

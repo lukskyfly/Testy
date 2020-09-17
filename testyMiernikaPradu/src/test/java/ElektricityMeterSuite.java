@@ -6,6 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         ElectricityMeterTest.class,
+        ElectricityMeterTest.class,
         TwoElectricityMetersTest.class
 })
 public class ElektricityMeterSuite {
