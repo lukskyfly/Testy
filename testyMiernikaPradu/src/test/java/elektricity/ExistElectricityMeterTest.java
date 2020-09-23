@@ -2,12 +2,12 @@ package elektricity;
 
 import org.junit.*;
 
-public class ElectricityMeterTest {
+public class ExistElectricityMeterTest {
 
     private static ElectricityMeter electricityMeter;
     @BeforeClass
     public static void init(){
-        electricityMeter = new ElectricityMeter();
+        ExistElectricityMeterTest.electricityMeter = new ElectricityMeter();
 
 
     }
@@ -28,52 +28,52 @@ public class ElectricityMeterTest {
     }
     @Test
     public void addKwh_newMeter_proprAddition() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+
         electricityMeter.addKwh(1);
-        Assert.assertTrue(electricityMeter.getKwh() == 1);
+        Assert.assertTrue(electricityMeter.getKwh() == 101);
     }
 
     @Test
     public void addKwh_newMeter2_proprAddition() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+
         electricityMeter.addKwh(1);
         electricityMeter.addKwh(4);
-        Assert.assertTrue(electricityMeter.getKwh() == 5);
+        Assert.assertTrue(electricityMeter.getKwh() == 105);
     }
 
     @Test
     public void addKwh_newMeter5_proprAddition() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+
         electricityMeter.addKwh(1);
         electricityMeter.addKwh(4);
         electricityMeter.addKwh(4);
         electricityMeter.addKwh(4);
         electricityMeter.addKwh(4);
-        Assert.assertTrue("", electricityMeter.getKwh() == 17);
+        Assert.assertTrue("", electricityMeter.getKwh() == 117);
     }
 
     @Test
     public void addKwhCounterIncreasIfNew() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+
         electricityMeter.addKwh(1);
-        Assert.assertTrue(electricityMeter.getKwh() == 1);
+        Assert.assertTrue(electricityMeter.getKwh() == 101);
     }
 
     @Test
     public void addKwhCounterIncreasIfSecond() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+
         electricityMeter.addKwh(1);
         electricityMeter.addKwh(1);
-        Assert.assertTrue(electricityMeter.getKwh() == 2);
+        Assert.assertTrue(electricityMeter.getKwh() == 102);
     }
 
     public void givenNewMeterWhenFirstAdditionThenProperCounter() {
         //Given
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+
         //When
         electricityMeter.addKwh(2);
         //Then
-        Assert.assertTrue(electricityMeter.getKwh() == 2);
+        Assert.assertTrue(electricityMeter.getKwh() == 102);
     }
 
     //    @Ignore("not implemented yet")
