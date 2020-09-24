@@ -39,6 +39,10 @@ public class ElectricityMeter {
         return (centsForKwh * 100 / centsForTariff) - 100;
     }
 
+    public float getKwhTariff() {
+        return kwhTariff;
+    }
+
     public float getKwh() {
         return kwh;
     }
