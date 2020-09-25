@@ -3,12 +3,16 @@ package elektricity;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
 
 public class TariffElektricityMeterTest {
     ElectricityMeter electricityMeter;
+    TariffProvider tp;
     @Before
     public void setUp() {
-        electricityMeter = new ElectricityMeter();
+        tp = Mockito.mock(TariffProvider.class);
+        electricityMeter = new ElectricityMeter(tp);
         electricityMeter.setTariffon(true);
         electricityMeter.setElctricityTariffStartHour(12);
         electricityMeter.setElctricityTariffEndHour(14);
@@ -17,7 +21,7 @@ public class TariffElektricityMeterTest {
     @Test
     public void GivenOnTariffWhenKwhAdditionThenCounterTariffIsIncreased(){
         //Given
-        //TODO setTariff Time mock isTariffNow() 
+       Mockito.when(tp.isTariffNow()).thenReturn(true);
         //When
         electricityMeter.addKwh(100);
         //Then
@@ -26,7 +30,7 @@ public class TariffElektricityMeterTest {
     @Test
     public void GivenNotOnTariffWhenKwhAdditionThenCounterTariffIsIncreased(){
         //Given
-        //TODO setTariff Time mock isTariffNow()
+        Mockito.when(tp.isTariffNow()).thenReturn(false);
         //When
         electricityMeter.addKwh(100);
         //Then

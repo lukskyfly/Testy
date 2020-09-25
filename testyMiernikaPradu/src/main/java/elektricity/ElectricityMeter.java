@@ -9,6 +9,7 @@ package elektricity;
 import java.util.Calendar;
 
 public class ElectricityMeter {
+    TariffProvider tp;
 
     private float kwh = 0;
     private int centsForKwh = 0;
@@ -28,7 +29,7 @@ public class ElectricityMeter {
         }
     }
 
-    private boolean isTariffNow() {
+    public boolean isTariffNow() {
         Calendar rightNow = Calendar.getInstance();
         int hour = rightNow.get(Calendar.HOUR_OF_DAY);
 
@@ -41,6 +42,15 @@ public class ElectricityMeter {
 
     public float getKwhTariff() {
         return kwhTariff;
+    }
+
+    //@Inject
+
+    public ElectricityMeter(TariffProvider tp) {
+        this.tp = tp;
+    }
+
+    public ElectricityMeter() {
     }
 
     public float getKwh() {
