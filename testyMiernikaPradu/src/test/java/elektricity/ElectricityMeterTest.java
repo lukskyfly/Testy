@@ -1,86 +1,32 @@
 package elektricity;
 
-import org.junit.*;
+import org.junit.jupiter.api.*;
+import org.mockito.Mockito;
 
-public class ElectricityMeterTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    private static ElectricityMeter electricityMeter;
-    @BeforeClass
-    public static void init(){
-        electricityMeter = new ElectricityMeter();
+class ElectricityMeterTest {
+    ElectricityMeter electricityMeter;
+    TariffProvider tp;
 
-
-    }
-
-    @Before
-    public void setUp() {
-    electricityMeter.addKwh(100);
-
-    }
-    @AfterClass
-    public static void release(){
-
-    }
-    @After
-    public void tearDown(){
-        electricityMeter.reset();
-
-    }
-    @Test
-    public void addKwh_newMeter_proprAddition() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
-        electricityMeter.addKwh(1);
-        Assert.assertTrue(electricityMeter.getKwh() == 1);
+    @BeforeEach
+    void setUp() {
+        tp = Mockito.mock(TariffProvider.class);
+        electricityMeter = new ElectricityMeter(tp);
+        electricityMeter.setTariffon(true);
     }
 
     @Test
-    public void addKwh_newMeter2_proprAddition() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
-        electricityMeter.addKwh(1);
-        electricityMeter.addKwh(4);
-        Assert.assertTrue(electricityMeter.getKwh() == 5);
-    }
-
-    @Test
-    public void addKwh_newMeter5_proprAddition() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
-        electricityMeter.addKwh(1);
-        electricityMeter.addKwh(4);
-        electricityMeter.addKwh(4);
-        electricityMeter.addKwh(4);
-        electricityMeter.addKwh(4);
-        Assert.assertTrue("", electricityMeter.getKwh() == 17);
-    }
-
-    @Test
-    public void addKwhCounterIncreasIfNew() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
-        electricityMeter.addKwh(1);
-        Assert.assertTrue(electricityMeter.getKwh() == 1);
-    }
-
-    @Test
-    public void addKwhCounterIncreasIfSecond() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
-        electricityMeter.addKwh(1);
-        electricityMeter.addKwh(1);
-        Assert.assertTrue(electricityMeter.getKwh() == 2);
-    }
-
-    public void givenNewMeterWhenFirstAdditionThenProperCounter() {
+    public void givenTariffOnWhenAdditionThenKwhInceased() {
         //Given
-        ElectricityMeter electricityMeter = new ElectricityMeter();
+        Mockito.when(tp.isTariffNow()).thenReturn(true);
         //When
-        electricityMeter.addKwh(2);
+        electricityMeter.addKwh(50);
         //Then
-        Assert.assertTrue(electricityMeter.getKwh() == 2);
+        //Assumptions.assumeTrue(tp.isTariffNow());
+        Assertions.assertEquals(50, electricityMeter.getKwhTariff());
+
     }
 
-    //    @Ignore("not implemented yet")
-    @Test(expected = ArithmeticException.class)
-    public void getHowMoreExpensiveNormalIs() {
-        ElectricityMeter electricityMeter = new ElectricityMeter();
-        electricityMeter.setCentsForKwh(90);
-        electricityMeter.getHowMoreExpensiveNormalIs();
-    }
+
 }
